@@ -83,7 +83,14 @@ func main(){
 		fmt.Printf("Error loading token, put it into RANCHER2_API_TOKEN envvar")
 		return
 	}
-	body, err := httpRequestBody(cl, "https://rancher2.prod.env/v3/clusters", "GET", token)
+
+	apiurl, ok:=os.LookupEnv("RANCHER2_API_TOKEN")
+	if !ok {
+		fmt.Printf("Error loading apiurl, put it into RANCHER2_API_URL envvar")
+		return
+	}
+
+	body, err := httpRequestBody(cl, fmt.Sprintf("%s/v3/clusters",apiurl), "GET", token)
 	if err!=nil {
 		fmt.Printf("Error getting cluster list from API")
 		return
