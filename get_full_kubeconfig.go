@@ -84,7 +84,7 @@ func main(){
 		return
 	}
 
-	apiurl, ok:=os.LookupEnv("RANCHER2_API_TOKEN")
+	apiurl, ok:=os.LookupEnv("RANCHER2_API_URL")
 	if !ok {
 		fmt.Printf("Error loading apiurl, put it into RANCHER2_API_URL envvar")
 		return
